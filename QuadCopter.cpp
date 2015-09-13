@@ -28,7 +28,7 @@ int8_t pkHeight;
 int8_t ikHeight;
 int8_t dkHeight;
 
-int pid(int8_t pk, int8_t ik, int8_t dk, int8_t sp, int8_t pv, int &totError, int &prevError);
+int pid(int8_t pk, int8_t ik, int8_t dk, int sp, int pv, int &totError, int &prevError);
 
 
 int main()
@@ -132,13 +132,13 @@ int main()
     }
 }
 
-int pid(int8_t pk, int8_t ik, int8_t dk, int8_t sp, int8_t pv, int &totError, int &prevError)
+int pid(int8_t pk, int8_t ik, int8_t dk, int sp, int pv, int &totError, int &prevError)
 {
-    int8_t error = sp-pv;
+    int error = sp-pv;
     totError += (error*dt);
-    int8_t p = pk*error;
-    int8_t i = ik*totError;
-    int8_t d = dk*((error-prevError)/dt);
+    int p = pk*error;
+    int i = ik*totError;
+    int d = dk*((error-prevError)/dt);
     prevError = error;
     return p + i + d;
 }
